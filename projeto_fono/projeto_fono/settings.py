@@ -81,17 +81,8 @@ WSGI_APPLICATION = 'projeto_fono.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.9/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'fono_2',
-        'USER': 'postgres',
-        'PASSWORD': '123',
-        'HOST': 'localhost',
-        'PORT': '5432',
-    }
-}
 
+#DATABASE
 
 # Password validation
 # https://docs.djangoproject.com/en/1.9/ref/settings/#auth-password-validators
@@ -136,3 +127,26 @@ STATICFILES_DIRS = (
 )
 
 LOGIN_URL = '/login/'
+
+
+import dj_database_url
+
+DATABASES = {
+    'default':  dj_database_url.config(),
+}
+
+# Honor the 'X-Forwarded-Proto' header for request.is_secure()
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+
+# Allow all host headers
+ALLOWED_HOSTS = ['*']
+
+
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, 'static'),
+)
+
+try:
+    from projeto_fono.local_settings import *
+except ImportError:
+    pass
