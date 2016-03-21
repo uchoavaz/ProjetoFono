@@ -1,0 +1,39 @@
+
+# -*- coding: utf-8 -*-
+from django import forms
+from .models import FonoUser
+
+
+class ProfileForm(forms.ModelForm):
+    class Meta:
+        model = FonoUser
+        fields = ('username', 'email', 'enrollment', 'full_name', 'short_name')
+
+
+class PasswordForm(forms.ModelForm):
+    password1 = forms.CharField(
+        label=("Senha"),
+        widget=forms.PasswordInput,
+        help_text='Insira a senha')
+    password2 = forms.CharField(
+        label=(u"Confirmação de senha"),
+        widget=forms.PasswordInput)
+
+    class Meta:
+        model = FonoUser
+        fields = ('password1', 'password2')
+
+    def clean_password2(self):
+        password1 = self.cleaned_data.get("password1")
+        password2 = self.cleaned_data.get("password2")
+        if password1 and password2 and password1 != password2:
+            raise forms.ValidationError(
+                self.error_messages[u'Senhas não coincidem'])
+        return password2
+
+    def save(self, commit=True):
+        user = super(PasswordForm, self).save(commit=False)
+        user.set_password(self.cleaned_data["password1"])
+        if commit:
+            user.save()
+        return user

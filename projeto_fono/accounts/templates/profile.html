@@ -1,0 +1,36 @@
+{% extends 'home.html' %}
+{% load widget_tweaks %}
+{% load static %}
+
+{% block style %}
+	<link href="{% static "navbar-static-top.css" %}" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+
+<div class='container'>
+
+	<form method="post"> 
+	{% csrf_token %}
+	  <div class="form-group">
+
+	  	{% for field in form %}
+	    {{field.label_tag}}
+	    {{ field|add_class:'form-control'}}
+
+	    {% for error in field.errors %}
+	    <p class="help-block">{{error}}</p>
+	    {% endfor %}
+
+	    {% endfor %}
+	  </div>
+	  <br>
+	  {% if salvo %}
+	   <p class="help-block">Itens Salvos!</p>
+	  {% endif %}
+	  <button type="submit" class="btn btn-default">Salvar</button>
+	</form>
+
+</div class='container'>
+
+{% endblock %}
