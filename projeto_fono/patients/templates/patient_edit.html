@@ -7,24 +7,273 @@
 {% endblock %}
 
 {% block patient_edit %}
-	<form method="post"> 
+	<form method="post">
 	{% csrf_token %}
-	<div class="col-sm-6 col-sm-offset-3">
 	  <div class="form-group">
+	   <div class="container">
+	   	<center><h3>Informações pessoais</h3></center>
+	  	<div class="col-md-4">
+	    {{form.nome.label_tag}}
+	    {{ form.nome|add_class:'form-control'}}
 
-	  	{% for field in form %}
-	    {{field.label_tag}}
-	    {{ field|add_class:'form-control'}}
 
-	    {% for error in field.errors %}
+	    {% for error in form.nome.errors %}
 	    <p class="help-block">{{error}}</p>
 	    {% endfor %}
+	    </div>
 
+	  	<div class="col-md-4">
+	    {{form.identidade.label_tag}}
+	    {{ form.identidade|add_class:'form-control'}}
+
+
+	    {% for error in form.identidade.errors %}
+	    <p class="help-block">{{error}}</p>
 	    {% endfor %}
+	    </div>
 
+
+	  	<div class="col-md-4">
+	    {{form.cpf.label_tag}}
+	    {{ form.cpf|add_class:'form-control'}}
+
+
+	    {% for error in form.cpf.errors %}
+	    <p class="help-block">{{error}}</p>
+	    {% endfor %}
+	    </div>
+
+	  	<div class="col-md-4">
+	    {{form.idade.label_tag}}
+	    {{ form.idade|add_class:'form-control'}}
+
+
+	    {% for error in form.idade.errors %}
+	    <p class="help-block">{{error}}</p>
+	    {% endfor %}
+	    </div>
+
+
+	  	<div class="col-md-4">
+	    {{form.data_nascimento.label_tag}}
+	    {{ form.data_nascimento|add_class:'form-control'}}
+
+
+	    {% for error in form.data_nascimento.errors %}
+	    <p class="help-block">{{error}}</p>
+	    {% endfor %}
+	    </div>
+
+	  	<div class="col-md-4">
+	    {{form.naturalidade.label_tag}}
+	    {{ form.naturalidade|add_class:'form-control'}}
+
+
+	    {% for error in form.naturalidade.errors %}
+	    <p class="help-block">{{error}}</p>
+	    {% endfor %}
+	    </div>
+
+
+	  	<div class="col-md-4">
+	    {{form.profissao.label_tag}}
+	    {{ form.profissao|add_class:'form-control'}}
+
+
+	    {% for error in form.profissao.errors %}
+	    <p class="help-block">{{error}}</p>
+	    {% endfor %}
+	    </div>
+
+	  	<div class="col-md-4">
+	    {{form.estado_civil.label_tag}}
+	    {{ form.estado_civil|add_class:'form-control'}}
+
+
+	    {% for error in form.estado_civil.errors %}
+	    <p class="help-block">{{error}}</p>
+	    {% endfor %}
+	    </div>
+
+
+	  	<div class="col-md-4">
+	    {{form.escolaridade.label_tag}}
+	    {{ form.escolaridade|add_class:'form-control'}}
+
+
+	    {% for error in form.escolaridade.errors %}
+	    <p class="help-block">{{error}}</p>
+	    {% endfor %}
+	    </div>
+
+	  	<div class="col-md-4">
+	    {{form.pai.label_tag}}
+	    {{ form.pai|add_class:'form-control'}}
+
+
+	    {% for error in form.pai.errors %}
+	    <p class="help-block">{{error}}</p>
+	    {% endfor %}
+	    </div>
+
+
+	  	<div class="col-md-4">
+	    {{form.mae.label_tag}}
+	    {{ form.mae|add_class:'form-control'}}
+
+
+	    {% for error in form.mae.errors %}
+	    <p class="help-block">{{error}}</p>
+	    {% endfor %}
+	    </div>
+	   </div>
+
+	   <hr>
+	   	<center><h3>Contato</h3></center>
+	   <div class="container">
+	  	<div class="col-md-4">
+	    {{form.endereco.label_tag}}
+	    {{ form.endereco|add_class:'form-control'}}
+
+
+	    {% for error in form.endereco.errors %}
+	    <p class="help-block">{{error}}</p>
+	    {% endfor %}
+	    </div>
+
+
+	  	<div class="col-md-4">
+	    {{form.bairro.label_tag}}
+	    {{ form.bairro|add_class:'form-control'}}
+
+
+	    {% for error in form.bairro.errors %}
+	    <p class="help-block">{{error}}</p>
+	    {% endfor %}
+	    </div>
+
+	  	<div class="col-md-4">
+	    {{form.cep.label_tag}}
+	    {{ form.cep|add_class:'form-control'}}
+
+
+	    {% for error in form.cep.errors %}
+	    <p class="help-block">{{error}}</p>
+	    {% endfor %}
+	    </div>
+
+
+	  	<div class="col-md-4">
+	    {{form.fone.label_tag}}
+	    {{ form.fone|add_class:'form-control'}}
+
+
+	    {% for error in form.fone.errors %}
+	    <p class="help-block">{{error}}</p>
+	    {% endfor %}
+	    </div>
+
+	  	<div class="col-md-4">
+	    {{form.contato.label_tag}}
+	    {{ form.contato|add_class:'form-control'}}
+
+
+	    {% for error in form.contato.errors %}
+	    <p class="help-block">{{error}}</p>
+	    {% endfor %}
+	    </div>
+	   </div>
+	   <hr>
+	   <center><h3>Sobre a consulta</h3></center>
+	   <div class="container">
+
+	  	<div class="col-md-4">
+	    {{form.encaminhado_por.label_tag}}
+	    {{ form.encaminhado_por|add_class:'form-control'}}
+
+
+	    {% for error in form.encaminhado_por.errors %}
+	    <p class="help-block">{{error}}</p>
+	    {% endfor %}
+	    </div>
+
+	  	<div class="col-md-4">
+	    {{form.hipotese_diagnostico.label_tag}}
+	    {{ form.hipotese_diagnostico|add_class:'form-control'}}
+
+
+	    {% for error in form.hipotese_diagnostico.errors %}
+	    <p class="help-block">{{error}}</p>
+	    {% endfor %}
+	    </div>
+
+
+	  	<div class="col-md-4">
+	    {{form.autorizacao.label_tag}}
+	    {{ form.autorizacao|add_class:'form-control'}}
+
+
+	    {% for error in form.autorizacao.errors %}
+	    <p class="help-block">{{error}}</p>
+	    {% endfor %}
+	    </div>
+
+	  	<div class="col-md-4">
+	    {{form.valor_sessao.label_tag}}
+	    {{ form.valor_sessao|add_class:'form-control'}}
+
+
+	    {% for error in form.valor_sessao.errors %}
+	    <p class="help-block">{{error}}</p>
+	    {% endfor %}
+	    </div>
+
+
+	  	<div class="col-md-4">
+	    {{form.desconto.label_tag}}
+	    {{ form.desconto|add_class:'form-control'}}
+
+
+	    {% for error in form.desconto.errors %}
+	    <p class="help-block">{{error}}</p>
+	    {% endfor %}
+	    </div>
+
+	  	<div class="col-md-4">
+	    {{form.inicio_atendimento.label_tag}}
+	    {{ form.inicio_atendimento|add_class:'form-control'}}
+
+
+	    {% for error in form.inicio_atendimento.errors %}
+	    <p class="help-block">{{error}}</p>
+	    {% endfor %}
+	    </div>
+
+	  	<div class="col-md-4">
+	    {{form.termino_atendimento.label_tag}}
+	    {{ form.termino_atendimento|add_class:'form-control'}}
+
+
+	    {% for error in form.termino_atendimento.errors %}
+	    <p class="help-block">{{error}}</p>
+	    {% endfor %}
+	    </div>
+	   </div>
+	   <div class="container">
+	   	<div class="col-md-12">
+	    {{form.motivo_consulta.label_tag}}
+	    {{ form.motivo_consulta|add_class:'form-control'}}
+
+
+	    {% for error in form.motivo_consulta.errors %}
+	    <p class="help-block">{{error}}</p>
+	    {% endfor %}
+	    </div>
+	   <div>
 	  </div>
+	  <div class="col-md-4">
 		<button type="submit" class="btn btn-primary  btn-lg">Salvar</button>
-	</div>
+	  </div>
 	</form>
 
 {% endblock %}

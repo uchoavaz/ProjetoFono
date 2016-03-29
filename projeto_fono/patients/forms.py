@@ -17,6 +17,33 @@ class PatientRegisterForm(PatientBaseForm):
         model = PatientUser
         exclude = ['treater']
 
+    def __init__(self, *args, **kwargs):
+        super(PatientRegisterForm, self).__init__(*args, **kwargs)
+        self.fields['data_nascimento'].widget.attrs\
+            .update({
+                'id': 'data_nascimento',
+                'type': 'text'
+            })
+        self.fields['inicio_atendimento'].widget.attrs\
+            .update({
+                'id': 'inicio_atendimento',
+                'type': 'text'
+            })
+        self.fields['termino_atendimento'].widget.attrs\
+            .update({
+                'id': 'termino_atendimento',
+                'type': 'text'
+            })
+        self.fields['cep'].widget.attrs\
+            .update({
+                'maxlength': '9',
+                'OnKeyPress': "formatar('#####-###', this)"
+            })
+        self.fields['cpf'].widget.attrs\
+            .update({
+                'maxlength': '14',
+                'OnKeyPress': "formatar('###.###.###-##', this)"
+            })
 
 class PatientPlanForm(PatientBaseForm):
     class Meta:

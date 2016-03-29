@@ -8,29 +8,12 @@
 {% endblock %}
 
 {% block patient_edit %}
-<h2>{{name_activity_plural}}</h2>
-<br>
-<div class="container" >
-<ul class="list-group">
- {% for obj in object_list %}
- <div class="col-sm-6 col-md-2">
-  <li class="list-group-item">
-  	{{obj.sessao}}
-     <div class=" pull-right">
-         <a href="{% url 'patients:session_list' pk_patient obj.sessao %}"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></a>
-         <a href="{% url 'patients:session_delete' pk_patient obj.sessao %}"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a>
-     </div>
-  </li>
-</div>
- {% endfor %}
-</ul>
-</div>
-<hr>
+
 <h2>Inserir {{name_activity}}</h2>
 
-<br>
+<div class="container">
 <form method ="get" class="form">
-	{% csrf_token %}
+  {% csrf_token %}
   <div class="form-group col-xs-2">
       <input class="form-control" name ="obj"></input>
   </div>
@@ -41,4 +24,55 @@
     </div>
   </div>
 </form>
+</div>
+<br>
+
+<div class="container">
+         <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3>{{name_activity_plural}}<h3>
+            </div>
+            <!-- /.panel-heading -->
+            <div class="panel-body">
+                <div class="dataTable_wrapper">
+                    <table class="table table-striped table-bordered table-hover" id="dataTables-example">
+                        <thead>
+                            <tr>
+                                <th>{{name_activity}}</th>
+                                <th>Detalhes</th>
+                                <th>Excluir</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for obj in object_list %}
+                            <tr class="odd gradeX">
+                                <td>{{obj.sessao}}</td>
+                                <td>
+                                  <center>
+                                    <p>
+                                      <a href="{% url 'patients:session_objective' pk_patient obj.sessao %}"><button type="button" class="btn btn-primary">Objetivos Específicos</button></a>
+                                      <a href="{% url 'patients:session_content' pk_patient obj.sessao %}"><button type="button" class="btn btn-primary">Conteúdo</button></a>
+                                      <a href="{% url 'patients:session_activity' pk_patient obj.sessao %}"><button type="button" class="btn btn-primary">Atividades</button></a>
+                                      <a href="{% url 'patients:session_observation' pk_patient obj.sessao %}"><button type="button" class="btn btn-primary">Observações</button></a>
+                                    </p>
+                                    </center>
+                                </td>
+                                <td>
+                                    <center>
+                                    <a href="{% url 'patients:session_delete' pk_patient obj.sessao %}"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a>
+                                    </center>
+                                </td>
+
+                            </tr>
+                            {% endfor %}
+
+                        </tbody>
+                    </table>
+                </div>
+                <!-- /.table-responsive -->
+            </div>
+            <!-- /.panel-body -->
+        </div>
+        <!-- /.panel -->
+</div>
 {% endblock %}

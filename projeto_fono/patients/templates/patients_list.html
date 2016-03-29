@@ -26,7 +26,7 @@
                                         <tr>
                                             <th>Paciente</th>
                                             <th>Identidade</th>
-                                            <th>Hipótese de diagnóstico</th>
+                                            <th>Hipótese diagnóstica</th>
                                             <th>Detalhes</th>
                                             <th>Excluir</th>
                                         </tr>
@@ -36,7 +36,7 @@
                                         <tr class="odd gradeX">
                                             <td>{{patient.nome}}</td>
                                             <td>{{patient.identidade}}</td>
-                                            <td>{{patient.hipostese_diagnostico}}</td>
+                                            <td>{{patient.hipotese_diagnostico}}</td>
                                             <td>
                                                 <center>
                                                 <a href="{% url 'patients:patient_edit' patient.id %}"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></a>

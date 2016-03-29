@@ -10,41 +10,17 @@
 {% block patient_edit %}
 <br>
 
-<a href="{% url 'patients:session_list' pk_patient session %}"><button type="button" class="btn btn-default">Voltar</button></a>
-<h2>{{name_activity}}</h2>
+<a href="{% url 'patients:patient_plan' pk_patient %}"><button type="button" class="btn btn-default">Voltar</button></a>
+
 <br>
-<ul class="list-group">
- {% for obj in object_list %}
-  <li class="list-group-item">
-  	{{obj.descricao}}
-    {% if objective %}
-  	 <a href="{% url 'patients:objective_delete' pk_patient session obj.pk %}"><span class="glyphicon glyphicon-remove pull-right" aria-hidden="true"></span></a>
-    {% endif %}
 
-    {% if content %}
-     <a href="{% url 'patients:content_delete' pk_patient session obj.pk %}"><span class="glyphicon glyphicon-remove pull-right" aria-hidden="true"></span></a>
-    {% endif %}
-
-    {% if activity %}
-     <a href="{% url 'patients:activity_delete' pk_patient session obj.pk %}"><span class="glyphicon glyphicon-remove pull-right" aria-hidden="true"></span></a>
-    {% endif %}
-
-    {% if observation %}
-     <a href="{% url 'patients:observation_delete' pk_patient session obj.pk %}"><span class="glyphicon glyphicon-remove pull-right" aria-hidden="true"></span></a>
-    {% endif %}
-
-
-  </li>
- {% endfor %}
-</ul>
-<br>
-<hr>
+<div class="container">
 <h2>Inserir {{name_activity}}</h2>
 <br>
 
 
 <form method ="get" class="form">
-	{% csrf_token %}
+  {% csrf_token %}
   <div class="form-group">
       <textarea class="form-control" rows="3" name ="obj"></textarea>
   </div>
@@ -55,4 +31,59 @@
     </div>
   </div>
 </form>
+</div>
+<br>
+<div class="container">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3>{{name_activity_plural}}<h3>
+            </div>
+            <!-- /.panel-heading -->
+            <div class="panel-body">
+                <div class="dataTable_wrapper">
+                    <table class="table table-striped table-bordered table-hover" id="dataTables-example">
+                        <thead>
+                            <tr>
+                                <th>{{name_activity}}</th>
+                                <th>Excluir</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for obj in object_list %}
+                            <tr class="odd gradeX">
+                                <td>{{obj.descricao}}</td>
+                                <td>
+                                    <center>
+                                      {% if objective %}
+                                       <a href="{% url 'patients:objective_delete' pk_patient session obj.pk %}"><span class="glyphicon glyphicon-remove " aria-hidden="true"></span></a>
+                                      {% endif %}
+
+                                      {% if content %}
+                                       <a href="{% url 'patients:content_delete' pk_patient session obj.pk %}"><span class="glyphicon glyphicon-remove " aria-hidden="true"></span></a>
+                                      {% endif %}
+
+                                      {% if activity %}
+                                       <a href="{% url 'patients:activity_delete' pk_patient session obj.pk %}"><span class="glyphicon glyphicon-remove " aria-hidden="true"></span></a>
+                                      {% endif %}
+
+                                      {% if observation %}
+                                       <a href="{% url 'patients:observation_delete' pk_patient session obj.pk %}"><span class="glyphicon glyphicon-remove " aria-hidden="true"></span></a>
+                                      {% endif %}
+                                    </center>
+                                </td>
+
+                            </tr>
+                            {% endfor %}
+
+                        </tbody>
+                    </table>
+                </div>
+                <!-- /.table-responsive -->
+            </div>
+            <!-- /.panel-body -->
+        </div>
+        <!-- /.panel -->
+      </div>
+
+
 {% endblock %}

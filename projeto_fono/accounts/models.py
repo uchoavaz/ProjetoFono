@@ -94,7 +94,7 @@ class PatientUser(models.Model):
         verbose_name='Identidade', max_length=15, unique=True)
     cpf = models.CharField(
         verbose_name='CPF', max_length=20, unique=True)
-    idate = models.IntegerField(verbose_name='Idade')
+    idade = models.IntegerField(verbose_name='Idade')
     data_nascimento = models.DateField(verbose_name='Data de Nascimento')
     naturalidade = models.CharField(
         verbose_name='Naturalidade', max_length=30,
@@ -129,19 +129,20 @@ class PatientUser(models.Model):
         blank=True)
     encaminhado_por = models.CharField(
         verbose_name='Encaminhado por', max_length=100)
-    hipostese_diagnostico = models.CharField(
-        verbose_name=u'Hipótese de Diagnóstico', max_length=100, null=True,
+    hipotese_diagnostico = models.CharField(
+        verbose_name=u'Hipótese diagnóstica', max_length=100, null=True,
         blank=True)
-    motivo_consulta = models.TextField(
-        verbose_name='Motivo da Consulta',
-        null=True, blank=True)
+
     autorizacao = models.CharField(verbose_name=u'Autorização', max_length=50)
     valor_sessao = models.FloatField(verbose_name=u'Valor da Sessão')
     desconto = models.FloatField(verbose_name='Desconto')
-    inicio_atentimento = models.DateField(
+    inicio_atendimento = models.DateField(
         verbose_name=u'Início do Atendimento')
     termino_atendimento = models.DateField(
         verbose_name=u'Término do Atendimento', null=True, blank=True)
+    motivo_consulta = models.TextField(
+        verbose_name='Motivo da Consulta',
+        null=True, blank=True)
 
     class Meta:
         verbose_name = (u'paciente')

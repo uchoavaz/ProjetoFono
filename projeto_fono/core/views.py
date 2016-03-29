@@ -57,14 +57,14 @@ class HomeView(LoginRequiredMixin, TemplateView):
 
         context['patients_count'] = 0
         context['sessions_count'] = 0
-        context['conducts_count'] = 0
+        context['conduct_count'] = 0
 
         if patients_count:
             context['patients_count'] = patients_count
         if sessions_count:
             context['sessions_count'] = sessions_count
         if conduct_count:
-            context['conductc_count'] = conduct_count
+            context['conduct_count'] = conduct_count
 
         return context
 

@@ -9,8 +9,6 @@ urlpatterns = [
     url(r'^editar/(?P<pk>\d+)/$', views.patient_edit, name='patient_edit'),
     url(r'^planejamento-diario/(?P<pk>\d+)$',
         views.patient_plan, name='patient_plan'),
-    url(r'^planejamento-diario/(?P<pk>\d+)/sessao/(?P<sessao>\d+)/$',
-        views.session_list, name='session_list'),
     url(r'^planejamento-diario/(?P<pk>\d+)/sessao/(?P<sessao>\d+)/deletar$',
         views.session_delete, name='session_delete'),
     url(r'^planejamento-diario/(?P<pk>\d+)/sessao/(?P<sessao>\d+)/objetivo$',

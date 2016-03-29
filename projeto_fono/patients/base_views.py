@@ -15,6 +15,8 @@ class PatientPlanBaseView(LoginRequiredMixin):
             PatientPlanBaseView, self).get_context_data(**kwargs)
         pk = self.kwargs.get('pk')
         context['patient_name'] = PatientUser.objects.get(id=pk).nome
+        context['hip_diag'] = PatientUser.objects.get(
+            id=pk).hipotese_diagnostico
         context['pk_patient'] = self.kwargs.get('pk')
         context['patient_plan'] = True
         return context
@@ -58,6 +60,8 @@ class PatientTherapyBaseView(LoginRequiredMixin):
             PatientTherapyBaseView, self).get_context_data(**kwargs)
         pk = self.kwargs.get('pk')
         context['patient_name'] = PatientUser.objects.get(id=pk).nome
+        context['hip_diag'] = PatientUser.objects.get(
+            id=pk).hipotese_diagnostico
         context['pk_patient'] = self.kwargs.get('pk')
         context['patient_therapy'] = True
         return context

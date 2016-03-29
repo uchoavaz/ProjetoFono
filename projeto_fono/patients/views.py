@@ -78,6 +78,8 @@ class PatientEditView(LoginRequiredMixin, FormView):
             PatientEditView, self).get_context_data(**kwargs)
         pk = self.kwargs.get('pk')
         context['patient_name'] = PatientUser.objects.get(id=pk).nome
+        context['hip_diag'] = PatientUser.objects.get(
+            id=pk).hipotese_diagnostico
         context['pk_patient'] = self.kwargs.get('pk')
         context['patient_inform'] = True
         return context
@@ -111,16 +113,6 @@ class PatientPlanView(PatientPlanBaseView, ListView):
         context = super(PatientPlanView, self).get_context_data(**kwargs)
         context['name_activity'] = u'Sessão'
         context['name_activity_plural'] = u'Sessões'
-        return context
-
-
-class PatientPlanSessionListView(PatientPlanBaseView, ListView):
-    template_name = 'patient_plan_session_list.html'
-
-    def get_context_data(self, **kwargs):
-        context = super(
-            PatientPlanSessionListView, self).get_context_data(**kwargs)
-        context['session'] = self.kwargs.get('sessao')
         return context
 
 
@@ -491,7 +483,6 @@ content_delete = PatientPlanSessionContentDeleteView.as_view()
 session_content = PatientPlanSessionContentView.as_view()
 objective_delete = PatientPlanSessionObjectiveDeleteView.as_view()
 session_objective = PatientPlanSessionObjectiveView.as_view()
-session_list = PatientPlanSessionListView.as_view()
 session_delete = PatientPlanSessionDeleteView.as_view()
 patient_plan = PatientPlanView.as_view()
 patient_edit = PatientEditView.as_view()
