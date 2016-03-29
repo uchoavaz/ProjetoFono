@@ -1,0 +1,58 @@
+{% extends 'patient_edit_base.html' %}
+{% load widget_tweaks %}
+{% load static %}
+
+
+{% block style %}
+  <link href="{% static "navbar-static-top.css" %}" rel="stylesheet">
+{% endblock %}
+
+{% block patient_edit %}
+<br>
+
+<a href="{% url 'patients:session_list' pk_patient session %}"><button type="button" class="btn btn-default">Voltar</button></a>
+<h2>{{name_activity}}</h2>
+<br>
+<ul class="list-group">
+ {% for obj in object_list %}
+  <li class="list-group-item">
+  	{{obj.descricao}}
+    {% if objective %}
+  	 <a href="{% url 'patients:objective_delete' pk_patient session obj.pk %}"><span class="glyphicon glyphicon-remove pull-right" aria-hidden="true"></span></a>
+    {% endif %}
+
+    {% if content %}
+     <a href="{% url 'patients:content_delete' pk_patient session obj.pk %}"><span class="glyphicon glyphicon-remove pull-right" aria-hidden="true"></span></a>
+    {% endif %}
+
+    {% if activity %}
+     <a href="{% url 'patients:activity_delete' pk_patient session obj.pk %}"><span class="glyphicon glyphicon-remove pull-right" aria-hidden="true"></span></a>
+    {% endif %}
+
+    {% if observation %}
+     <a href="{% url 'patients:observation_delete' pk_patient session obj.pk %}"><span class="glyphicon glyphicon-remove pull-right" aria-hidden="true"></span></a>
+    {% endif %}
+
+
+  </li>
+ {% endfor %}
+</ul>
+<br>
+<hr>
+<h2>Inserir {{name_activity}}</h2>
+<br>
+
+
+<form method ="get" class="form">
+	{% csrf_token %}
+  <div class="form-group">
+      <textarea class="form-control" rows="3" name ="obj"></textarea>
+  </div>
+  
+  <div class="form-group">
+    <div class="col-sm-10">
+      <button type="submit" class="btn btn-primary btn-lg">Inserir</button>
+    </div>
+  </div>
+</form>
+{% endblock %}

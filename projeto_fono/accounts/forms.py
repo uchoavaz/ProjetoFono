@@ -7,16 +7,22 @@ from .models import FonoUser
 class ProfileForm(forms.ModelForm):
     class Meta:
         model = FonoUser
-        fields = ('username', 'email', 'enrollment', 'full_name', 'short_name')
+        fields = (
+            'username',
+            'email',
+            'enrollment',
+            'supervisor',
+            'full_name',
+            'short_name')
 
 
 class PasswordForm(forms.ModelForm):
     password1 = forms.CharField(
-        label=("Senha"),
+        label=("Nova Senha"),
         widget=forms.PasswordInput,
         help_text='Insira a senha')
     password2 = forms.CharField(
-        label=(u"Confirmação de senha"),
+        label=(u"Confirmação da nova senha"),
         widget=forms.PasswordInput)
 
     class Meta:
@@ -27,8 +33,7 @@ class PasswordForm(forms.ModelForm):
         password1 = self.cleaned_data.get("password1")
         password2 = self.cleaned_data.get("password2")
         if password1 and password2 and password1 != password2:
-            raise forms.ValidationError(
-                self.error_messages[u'Senhas não coincidem'])
+            raise forms.ValidationError(u'Senhas não coincidem')
         return password2
 
     def save(self, commit=True):

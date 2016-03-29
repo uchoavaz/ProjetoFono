@@ -1,47 +1,59 @@
-{% extends 'base.html' %}
+{% extends 'home_base.html' %}
+{% load widget_tweaks %}
 {% load static %}
 
 {% block style %}
-	<link href="{% static "navbar-static-top.css" %}" rel="stylesheet">
+  <link href="{% static "navbar-static-top.css" %}" rel="stylesheet">
 {% endblock %}
 
-{% block nav-bar %}
+{% block content %}
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <div class="row">
+                                <div class="col-xs-3">
+                                    <i class="fa fa-user fa-5x"></i>
+                                </div>
+                                <div class="col-xs-9 text-right">
+                                    <div class="huge">{{ patients_count }}</div>
+                                    <div>Pacientes</div>
+                                </div>
+                            </div>
+                        </div>
 
-    <nav class="navbar navbar-default navbar-static-top">
-      <div class="container">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="#">Projeto Fono</a>
-        </div>
-        <div id="navbar" class="navbar-collapse collapse">
-          <ul class="nav navbar-nav">
-            <li class="active"><a href="#">Home</a></li>
-          </ul>
-          <ul class="nav navbar-nav navbar-right">
-            <li class="dropdown active">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{user.username}} <span class="caret"></span></a>
-              <ul class="dropdown-menu">
-                <li><a href="{% url 'accounts:profile' %}">Perfil</a></li>
-                <li><a href="{% url 'accounts:password' %}">Mudar Senha</a></li>
-                <li role="separator" class="divider"></li>
-                <li><a href="{% url 'core:logout' %}">Sair</a></li>
-              </ul>
-            </li>
-          </ul>
-        </div><!--/.nav-collapse -->
-      </div>
-    <div class="container">
-   </nav>
-   <div class='container'>
-   
-   	{% block content %}
-   	{% endblock %}
-
-   </div class='container'>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="panel panel-green">
+                        <div class="panel-heading">
+                            <div class="row">
+                                <div class="col-xs-3">
+                                    <i class="fa fa-list fa-5x"></i>
+                                </div>
+                                <div class="col-xs-9 text-right">
+                                    <div class="huge">{{ sessions_count }}</div>
+                                    <div>Sessões</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="panel panel-yellow">
+                        <div class="panel-heading">
+                            <div class="row">
+                                <div class="col-xs-3">
+                                    <i class="fa fa-stethoscope fa-5x"></i>
+                                </div>
+                                <div class="col-xs-9 text-right">
+                                    <div class="huge">{{ conducts_count }}</div>
+                                    <div>Condutas Fonoaudiológicas</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
 {% endblock %}

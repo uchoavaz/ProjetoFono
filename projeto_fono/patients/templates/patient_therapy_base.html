@@ -1,0 +1,39 @@
+{% extends 'patient_edit_base.html' %}
+{% load widget_tweaks %}
+{% load static %}
+
+
+{% block style %}
+  <link href="{% static "navbar-static-top.css" %}" rel="stylesheet">
+{% endblock %}
+
+
+{% block patient_edit %}
+{% block back_button %}
+
+{% endblock %}
+<h2>{{name_activity_plural}}</h2>
+<br>
+<div class="container" >
+<ul class="list-group">
+{% block list_object %}
+{% endblock %}
+</ul>
+</div>
+<hr>
+<h2>Inserir {{name_activity}}</h2>
+
+<br>
+<form method ="get" class="form">
+	{% csrf_token %}
+
+  
+  <div class="form-group">
+      {% block submit_type %}
+      
+      {% endblock %}
+  </div>
+    <button type="submit" class="btn btn-primary btn-lg">Inserir</button>
+
+</form>
+{% endblock %}

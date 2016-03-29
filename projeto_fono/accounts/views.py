@@ -1,8 +1,7 @@
 from django.shortcuts import render
-from django.core.urlresolvers import reverse
 from django.views.generic.edit import FormView
-from django.shortcuts import redirect
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib import messages
 from .forms import ProfileForm
 from .forms import PasswordForm
 from .models import FonoUser
@@ -22,7 +21,7 @@ class ProfileView(LoginRequiredMixin, FormView):
         form.save()
         context = self.get_context_data(**kwargs)
         context['form'] = form
-        context['salvo'] = True
+        messages.success(self.request, 'Seu perfil foi atualizado')
         return self.render_to_response(context)
 
     def get_context_data(self, **kwargs):
@@ -42,6 +41,10 @@ class PasswordView(LoginRequiredMixin, FormView):
     def form_valid(self, form):
         form.instance.user = self.request.user
         form.save()
+        messages.success(
+            self.request,
+            'Sua senha foi alterada! Entre no sistema com sua nova senha')
         return super(PasswordView, self).form_valid(form)
+
 profile = ProfileView.as_view()
 password = PasswordView.as_view()

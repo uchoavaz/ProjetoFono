@@ -1,0 +1,31 @@
+{% extends 'home_base.html' %}
+{% load widget_tweaks %}
+{% load static %}
+
+{% block style %}
+  <link href="{% static "navbar-static-top.css" %}" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+
+<h2>Nome do paciente:<span>  </span><small>{{patient_name}}</small></h2>
+{% if session %}
+<h2>Número da sessão:<span>  </span><small>{{session}}</small></h2>
+{% endif %}
+{% if conduct %}
+<h2>Conduta Fonoaudiológica:<span>  </span><small>{{conduct}}</small></h2>
+{% endif %}
+<br>
+<ul class="nav nav-tabs">
+  <li {% if patient_inform %}class="active"{% else %}class=""{% endif %}><a href="{% url 'patients:patient_edit' pk_patient %}">Informações do paciente</a></li>
+  <li {% if patient_therapy %}class="active"{% else %}class=""{% endif %}><a href="{% url 'patients:patient_therapy' pk_patient %}">Planejamento Terapêutico</a></li>
+  <li {% if patient_plan %}class="active"{% else %}class=""{% endif %}><a href="{% url 'patients:patient_plan' pk_patient %}">Planejamento Diário</a></li>
+</ul>
+
+
+{% block patient_edit %}
+
+{% endblock %}
+
+
+{% endblock %}

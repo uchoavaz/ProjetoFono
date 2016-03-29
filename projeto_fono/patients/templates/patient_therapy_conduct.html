@@ -1,0 +1,23 @@
+{% extends 'patient_therapy_base.html' %}
+{% load widget_tweaks %}
+{% load static %}
+
+{% block back_button %}
+<br>
+	<a href="{% url 'patients:patient_therapy' pk_patient %}"><button type="button" class="btn btn-default">Voltar</button></a>
+{% endblock %}
+
+{% block list_object %}
+ {% for obj in object_list %}
+  <li class="list-group-item">
+  	{{obj.descricao}}
+     <div class=" pull-right">
+         <a href="{% url 'patients:topic_delete' pk_patient pk_conduct obj.pk %}"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a>
+     </div>
+  </li>
+ {% endfor %}
+{% endblock %}
+
+{% block submit_type %}
+ <textarea name="obj" class="form-control" rows="3"></textarea>
+{% endblock %}

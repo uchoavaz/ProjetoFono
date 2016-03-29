@@ -1,0 +1,44 @@
+{% extends 'patient_edit_base.html' %}
+{% load widget_tweaks %}
+{% load static %}
+
+
+{% block style %}
+  <link href="{% static "navbar-static-top.css" %}" rel="stylesheet">
+{% endblock %}
+
+{% block patient_edit %}
+<h2>{{name_activity_plural}}</h2>
+<br>
+<div class="container" >
+<ul class="list-group">
+ {% for obj in object_list %}
+ <div class="col-sm-6 col-md-2">
+  <li class="list-group-item">
+  	{{obj.sessao}}
+     <div class=" pull-right">
+         <a href="{% url 'patients:session_list' pk_patient obj.sessao %}"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></a>
+         <a href="{% url 'patients:session_delete' pk_patient obj.sessao %}"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a>
+     </div>
+  </li>
+</div>
+ {% endfor %}
+</ul>
+</div>
+<hr>
+<h2>Inserir {{name_activity}}</h2>
+
+<br>
+<form method ="get" class="form">
+	{% csrf_token %}
+  <div class="form-group col-xs-2">
+      <input class="form-control" name ="obj"></input>
+  </div>
+  
+  <div class="form-group">
+    <div class="col-sm-10">
+      <button type="submit" class="btn btn-primary btn-lg">Inserir</button>
+    </div>
+  </div>
+</form>
+{% endblock %}
